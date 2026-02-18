@@ -22,18 +22,25 @@ module.exports = {
 
   module: {
     rules: [
-      {
-      test: /\.(ts|tsx)$/,
-      use: {
-        loader: "ts-loader",
-        options: { transpileOnly: true }
+        {
+        test: /\.(ts|tsx)$/,
+        use: {
+          loader: "ts-loader",
+          options: { transpileOnly: true }
+        },
+        exclude: /node_modules/,
       },
-      exclude: /node_modules/,
-    },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/[name].[contenthash][ext]"
+      }
+    }
     ],
   },
 
